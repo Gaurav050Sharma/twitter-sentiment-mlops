@@ -68,9 +68,10 @@ val_df["Label"] = val_df["Sentiment"].map(class_to_index)
 train_labels = tf.keras.utils.to_categorical(train_df["Label"])
 val_labels = tf.keras.utils.to_categorical(val_df["Label"])
 
-# Build improved model
+# Build improved model with updated architecture
 model = tf.keras.Sequential([
-    tf.keras.layers.Embedding(MAX_WORDS, 128, input_length=MAX_LENGTH),
+    tf.keras.layers.Input(shape=(50,)),  # Explicit input shape instead of input_length
+    tf.keras.layers.Embedding(MAX_WORDS, 128),
     tf.keras.layers.Conv1D(128, 5, activation='relu'),
     tf.keras.layers.MaxPooling1D(2),
     tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(64, return_sequences=True)),
@@ -113,4 +114,4 @@ model.fit(
 )
 
 # Save model
-model.save("models/sentiment_model.h5") 
+model.save("models/sentiment_model.h5", save_format='h5') 
