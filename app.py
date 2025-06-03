@@ -22,7 +22,7 @@ download_nltk_data()
 # Load model
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model("models/sentiment_model.h5")
+    return tf.keras.models.load_model("models/sentiment_model")
 
 # Load and prepare tokenizer
 @st.cache_resource

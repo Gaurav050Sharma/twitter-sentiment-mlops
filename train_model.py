@@ -114,4 +114,4 @@ model.fit(
 )
 
 # Save model
-model.save("models/sentiment_model.h5", save_format='h5') 
+model.save("models/sentiment_model", save_format='tf') 
